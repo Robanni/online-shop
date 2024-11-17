@@ -3,7 +3,7 @@ from django.shortcuts import render
 goods = [
         {'image': 'deps/images/goods/set of tea table and three chairs.jpg',
          'name': 'Чайный столик и три стула',
-         'description': 'Комплект из трёх стульев и дизайнерский столик для гостинной комнаты.',
+         'description': 'Комплект из трёх стульев и дизайнерский столик для гостиной комнаты.',
          'price': 150.00},
 
          {'image': 'deps/images/goods/set of tea table and two chairs.jpg',
@@ -13,7 +13,7 @@ goods = [
 
          {'image': 'deps/images/goods/double bed.jpg',
          'name': 'Двухспальная кровать',
-         'description': 'Кровать двухспальная с надголовником и вообще очень ортопедичная.',
+         'description': 'Кровать двухспальная с наголовником и вообще очень ортопедия.',
          'price': 670.00},
 
          {'image': 'deps/images/goods/kitchen table.jpg',
@@ -27,8 +27,8 @@ goods = [
          'price': 430.00},
 
          {'image': 'deps/images/goods/corner sofa.jpg',
-         'name': 'Угловой диван для гостинной',
-         'description': 'Угловой диван, раскладывается в двухспальную кровать, для гостинной и приема гостей самое то!',
+         'name': 'Угловой диван для гостиной',
+         'description': 'Угловой диван, раскладывается в двухспальную кровать, для гостиной и приема гостей самое то!',
          'price': 610.00},
 
          {'image': 'deps/images/goods/bedside table.jpg',
@@ -52,7 +52,7 @@ goods = [
          'price': 10.00},
 
          {'image': 'deps/images/goods/flower.jpg',
-         'name': 'Цветок стилизированный',
+         'name': 'Цветок стилизованный',
          'description': 'Дизайнерский цветок (возможно искусственный) для украшения интерьера.',
          'price': 15.00},
 
