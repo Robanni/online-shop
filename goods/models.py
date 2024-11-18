@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.db import models
 
+
 class Categories(models.Model):
     name = models.CharField( max_length=150,unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
@@ -31,4 +32,12 @@ class Products(models.Model):
         verbose_name_plural = 'Продукты'
 
     def __str__(self) -> str:
-        return self.name
+        return f'{self.name} количество - {self.quantity}'
+    
+    def display_id(self):
+        return f'{self.id:05}' # type: ignore
+    
+    def sell_price(self):
+        if self.discount:
+            return round(self.price - self.price * self.discount/100, 2)
+        return self.price
