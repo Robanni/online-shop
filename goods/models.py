@@ -35,7 +35,7 @@ class Products(models.Model):
         return f'{self.name} количество - {self.quantity}'
     
     def display_id(self):
-        return f'{self.id:05}' # type: ignore
+        return f'{self.id:05}'  # type: ignore
     
     def sell_price(self):
         if self.discount:
