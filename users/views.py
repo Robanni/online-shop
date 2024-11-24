@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.contrib import auth
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
 
 
@@ -19,6 +20,7 @@ def login(request):
 
             if user:
                 auth.login(request, user)
+                messages.success(request, f"{username}, Вы вошли в аккаунт")   
                 return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserLoginForm()
@@ -30,6 +32,7 @@ def login(request):
     }
     return render(request, 'users/login.html', context)
 
+
 def registration(request):
     
     if request.method == "POST":
@@ -37,6 +40,7 @@ def registration(request):
         if form.is_valid():
             form.save()
             user = form.instance
+            messages.success(request, "Вы зарегистрировали аккаунт")  
             auth.login(request=request,user=user)
             return HttpResponseRedirect(reverse('main:index'))
     else:
@@ -49,15 +53,29 @@ def registration(request):
     }
     return render(request, 'users/registration.html', context)
 
-def profile(request):
 
+@login_required
+def profile(request):
+    
+    if request.method == "POST":
+        form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Профиль обновлен")  
+            return HttpResponseRedirect(reverse('user:profile'))
+    else:
+        form = ProfileForm(instance=request.user)
+        
 
     context = {
-        'title': 'Home - Главная',
-        'content':'Магазин мебели HOME',   
+        'title': 'Home - Профиль',
+        'form':form
     }
     return render(request, 'users/profile.html', context)
 
+
+@login_required
 def logout(request):
+    messages.success(request, "Вы вышли из аккаунта")  
     auth.logout(request=request)
     return redirect(reverse('main:index'))
