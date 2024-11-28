@@ -79,3 +79,6 @@ def logout(request):
     messages.success(request, "Вы вышли из аккаунта")  
     auth.logout(request=request)
     return redirect(reverse('main:index'))
+
+def users_cart(request):
+    return render(request, 'users/users_cart.html')
