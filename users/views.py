@@ -49,7 +49,7 @@ def registration(request):
 
     context = {
         'title': 'Home - регистрация',
-        'form':form
+        'form' : form
     }
     return render(request, 'users/registration.html', context)
 
